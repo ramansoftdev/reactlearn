@@ -1,7 +1,7 @@
 import Die from "./Die";
 import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const generateAllNewDice = () => {
   console.log("generating new dice rolls for 10 dice");
@@ -18,6 +18,7 @@ const generateAllNewDice = () => {
 
 export default function Main() {
   const [dice, setDice] = useState(() => generateAllNewDice());
+  const buttonRef = useRef(null);
 
   const rollDice = () => {
     if (gameWon) {
@@ -46,13 +47,15 @@ export default function Main() {
     );
   };
 
-  const newGame = () => {
-    setDice(generateAllNewDice());
-  };
-
   const gameWon =
     dice.every((die) => die.isHeld) &&
     dice.every((die) => die.value === dice[0].value);
+
+  useEffect(() => {
+    if (gameWon) {
+      buttonRef.current.focus();
+    }
+  }, [gameWon]);
 
   return (
     <main>
@@ -76,7 +79,12 @@ export default function Main() {
         })}
       </div>
 
-      <button className="roll-dice" onClick={rollDice}>
+      <button
+        ref={buttonRef}
+        className="roll-dice"
+        onClick={rollDice}
+        aria-label={`${gameWon ? "New Game" : "ROLL"}`}
+      >
         {gameWon ? "New Game" : "ROLL"}
       </button>
     </main>
