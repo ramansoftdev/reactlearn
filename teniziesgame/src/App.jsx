@@ -1,7 +1,10 @@
+import Main from "./components/Main"
+
+
 function App() {
   return (
     <>
-      <h1> app component here</h1>
+      <Main/>
     </>
   );
 }
