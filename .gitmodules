@@ -1,0 +1,9 @@
+[submodule "tenziegamefrontend"]
+	path = tenziegamefrontend
+	url = git@github.com:ramansoftdev/tenziesgamefrontend.git
+[submodule "randommemefrontend"]
+	path = randommemefrontend
+	url = git@github.com:ramansoftdev/randommemefrontend.git
+[submodule "hangmangamefrontend"]
+	path = hangmangamefrontend
+	url = git@github.com:ramansoftdev/hangmangamefrontend.git
